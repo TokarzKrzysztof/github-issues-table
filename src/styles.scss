@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+@use "./app/styles/theme-colors" as my-theme; // location of generated file
+@use "./app/styles/variables" as v;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: my-theme.$primary-palette,
+        tertiary: my-theme.$tertiary-palette,
+      ),
+      typography: Hind,
+      density: 0,
+    )
+  );
+} /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mdc-button[mat-flat-button] {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12),
+    0px 1px 3px rgba(0, 0, 0, 0.2);
+
+  @include mat.button-overrides(
+    (
+      filled-label-text-color: white,
+      filled-container-shape: 5px,
+      filled-horizontal-padding: v.$spacing * 3,
+      filled-label-text-weight: var(--mat-sys-label-large-weight-prominent),
+    )
+  );
+}
