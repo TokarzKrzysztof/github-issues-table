@@ -18,7 +18,7 @@ export class UrlService {
 
   readonly itemsPerPage = 100;
 
-  areQueryParamsValid(): boolean {
+  private areQueryParamsValid(): boolean {
     const current = this.getQueryParams();
 
     if (!['asc', 'desc'].includes(current.order)) return false;

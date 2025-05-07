@@ -5,8 +5,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { RouterLink } from '@angular/router';
 import { AppRoutes } from '../../app.routes';
+import { TableDataQueryParams } from '../../core/url.service';
 import { TableDataService } from '../../services/table-data.service';
-import { TableDataQueryParams } from '../../services/url.service';
 import { DataTableComponent } from "./data-table/data-table.component";
 
 @Component({

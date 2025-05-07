@@ -21,17 +21,43 @@
     [matSortDirection]="queryParams().order"
   >
     <ng-container matColumnDef="created">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        disableClear
+        [width]="dateColumnWidth"
+      >
         Created On
       </th>
-      <td mat-cell *matCellDef="let row">{{ typedRow(row).created_at }}</td>
+      <td mat-cell *matCellDef="let row">
+        <ng-container
+          *ngTemplateOutlet="
+            date;
+            context: { $implicit: typedRow(row).created_at }
+          "
+        ></ng-container>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="updated">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        disableClear
+        [width]="dateColumnWidth"
+      >
         Updated On
       </th>
-      <td mat-cell *matCellDef="let row">{{ typedRow(row).updated_at }}</td>
+      <td mat-cell *matCellDef="let row">
+        <ng-container
+          *ngTemplateOutlet="
+            date;
+            context: { $implicit: typedRow(row).updated_at }
+          "
+        ></ng-container>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="title">
@@ -51,3 +77,8 @@
   [hidePageSize]="true"
   [showFirstLastButtons]="true"
 ></mat-paginator>
+
+<ng-template #date let-value>
+  {{ value | date: dateFormatTop }} <br />
+  {{ value | date: dateFormatBottom | lowercase }}
+</ng-template>

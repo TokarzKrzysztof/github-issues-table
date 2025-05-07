@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { ApiService } from './api.service';
-import { TableDataQueryParams, UrlService } from './url.service';
+import { ApiService } from '../core/api.service';
+import { TableDataQueryParams, UrlService } from '../core/url.service';
 
 @Injectable()
 export class TableDataService {
@@ -18,12 +18,12 @@ export class TableDataService {
   }
 
   getData() {
-    return this.urlService.listenQueryParams().pipe(
+    return this.listenQueryParams().pipe(
       switchMap((params) => {
         this.isLoading.set(true);
-        return this.apiService!.getGithubIssues(params).pipe(
-          catchError(() => of(null)),
-        );
+        return this.apiService
+          .getGithubIssues(params)
+          .pipe(catchError(() => of(null)));
       }),
       map((data) => {
         this.isLoading.set(false);

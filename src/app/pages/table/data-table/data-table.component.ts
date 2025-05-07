@@ -1,3 +1,4 @@
+import { DatePipe, LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,8 +17,8 @@ import {
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { GithubIssue } from '../../../services/api.service';
-import { TableDataQueryParams } from '../../../services/url.service';
+import { GithubIssue } from '../../../core/api.service';
+import { TableDataQueryParams } from '../../../core/url.service';
 
 @Component({
   selector: 'app-data-table',
@@ -26,6 +27,9 @@ import { TableDataQueryParams } from '../../../services/url.service';
     MatSortModule,
     MatPaginatorModule,
     MatProgressSpinner,
+    DatePipe,
+    NgTemplateOutlet,
+    LowerCasePipe
   ],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.scss',
@@ -44,8 +48,11 @@ export class DataTableComponent {
   private paginator = viewChild(MatPaginator);
   private sort = viewChild(MatSort);
 
-  readonly displayedColumns: string[] = ['created', 'updated', 'title'];
-  protected typedRow = (row: any) => row as GithubIssue;
+  readonly displayedColumns = ['created', 'updated', 'title'];
+  readonly dateFormatTop = 'MM-dd-yy';
+  readonly dateFormatBottom = 'hh:mm:ss aa';
+  readonly dateColumnWidth = 130;
+  readonly typedRow = (row: any) => row as GithubIssue;
 
   ngAfterViewInit() {
     this.sort()!
