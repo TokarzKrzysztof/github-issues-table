@@ -40,7 +40,7 @@ export class UrlService {
   getDefaultQueryParams(): TableDataQueryParams {
     return {
       sort: 'created',
-      order: 'asc',
+      order: 'desc',
       page: 1,
       per_page: this.itemsPerPage,
     };
