@@ -73,6 +73,7 @@ table.mat-mdc-table {
       row-item-label-text-color: map.get(v.$neutral-palette, 50),
       header-headline-weight: 500,
       row-item-label-text-weight: 500,
+      row-item-label-text-line-height: v.$spacing * 2
     )
   );
 

@@ -23,8 +23,8 @@ export class UrlService {
 
     if (!['asc', 'desc'].includes(current.order)) return false;
     if (!['created', 'updated'].includes(current.sort)) return false;
-    if (typeof current.page !== 'number') return false;
-    if (typeof current.per_page !== 'number') return false;
+    if (current.page <= 0) return false;
+    if (current.per_page <= 0) return false;
     return true;
   }
 
@@ -51,8 +51,8 @@ export class UrlService {
     return {
       sort: params['sort'],
       order: params['order'],
-      page: +params['page'],
-      per_page: +params['per_page'],
+      page: parseInt(params['page']) || 0,
+      per_page: parseInt(params['per_page']) || 0,
     };
   }
 
