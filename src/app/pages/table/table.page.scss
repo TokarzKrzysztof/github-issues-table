@@ -1,6 +1,14 @@
 @use "../../styles/variables" as v;
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: v.$spacing * 2;
+  height: 100vh;
 }
+
+.back-button {
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+

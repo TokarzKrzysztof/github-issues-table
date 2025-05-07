@@ -1,16 +1,16 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
-@use "./app/styles/theme-colors" as my-theme; // location of generated file
 @use "./app/styles/variables" as v;
+@use "sass:map";
 
 html {
   @include mat.theme(
     (
       color: (
         theme-type: light,
-        primary: my-theme.$primary-palette,
-        tertiary: my-theme.$tertiary-palette,
+        primary: v.$primary-palette,
+        tertiary: v.$tertiary-palette,
       ),
       typography: Hind,
       density: 0,
@@ -27,6 +27,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .mdc-button[mat-flat-button] {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12),
     0px 1px 3px rgba(0, 0, 0, 0.2);
@@ -39,4 +43,55 @@ body {
       filled-label-text-weight: var(--mat-sys-label-large-weight-prominent),
     )
   );
+}
+
+.table-container:has(table.mat-mdc-table) {
+  border: 1px solid map.get(v.$neutral-palette, 100);
+}
+
+table.mat-mdc-table {
+  thead .mat-mdc-header-row {
+    background-color: map.get(v.$neutral-palette, 94);
+    th {
+      border: 1px solid map.get(v.$neutral-palette, 100);
+    }
+    .mat-sort-header-arrow svg {
+      width: 22px;
+    }
+  }
+
+  @include mat.table-overrides(
+    (
+      header-headline-color: map.get(v.$neutral-palette, 50),
+      background-color: transparent,
+      header-container-height: 40px,
+      row-item-container-height: 40px,
+      row-item-outline-color: map.get(v.$neutral-palette, 100),
+      row-item-label-text-color: map.get(v.$neutral-palette, 50),
+      header-headline-weight: 500,
+      row-item-label-text-weight: 500,
+    )
+  );
+
+  @include mat.sort-overrides(
+    (
+      arrow-color: map.get(v.$neutral-palette, 50),
+    )
+  );
+}
+
+.mat-mdc-paginator {
+  @include mat.paginator-overrides(
+    (
+      container-text-color: map.get(v.$neutral-palette, 50),
+      container-background-color: transparent,
+      container-text-weight: 500,
+      container-text-size: var(--mat-sys-body-medium-size),
+      container-size: auto
+    )
+  );
+
+  .mat-mdc-paginator-container {
+    padding: 0;
+  }
 }

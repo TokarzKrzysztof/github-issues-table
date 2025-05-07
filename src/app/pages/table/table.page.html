@@ -1,1 +1,15 @@
-<button mat-flat-button [routerLink]="AppRoutes.Home">Back</button>
+<button class="back-button" mat-flat-button [routerLink]="AppRoutes.Home">
+  Back
+</button>
+
+@if (queryParams()) {
+<app-data-table
+  (sortChange)="sortChange($event)"
+  (pageChange)="pageChange($event)"
+  [totalCount]="tableDataService.totalCount()"
+  [isLoading]="tableDataService.isLoading()"
+  [isLimitReached]="tableDataService.isLimitReached()"
+  [data]="data()"
+  [queryParams]="queryParams()!"
+></app-data-table>
+}

@@ -1,0 +1,32 @@
+@use "../../../styles/variables" as v;
+@use "sass:map";
+@use "sass:color";
+
+:host {
+  margin-top: v.$spacing * 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-grow: 1;
+  position: relative;
+}
+
+.table-container {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.loading-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color.adjust(map.get(v.$neutral-palette, 100), $alpha: -0.6);
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.limit-reached-info {
+  color: map.get(v.$neutral-palette, 50);
+  padding: v.$spacing;
+}
