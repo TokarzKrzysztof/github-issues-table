@@ -19,6 +19,7 @@
     [matSortActive]="queryParams().sort"
     matSortDisableClear
     [matSortDirection]="queryParams().order"
+    (matSortChange)="sortChange.emit($event)"
   >
     <ng-container matColumnDef="created">
       <th
@@ -76,7 +77,9 @@
   [pageIndex]="queryParams().page - 1"
   [hidePageSize]="true"
   [showFirstLastButtons]="true"
-></mat-paginator>
+  (page)="pageChange.emit($event)"
+>
+</mat-paginator>
 
 <ng-template #date let-value>
   {{ value | date: dateFormatTop }} <br />

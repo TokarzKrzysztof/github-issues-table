@@ -32,7 +32,9 @@ body {
 }
 
 .mdc-button[mat-flat-button] {
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12),
+  box-shadow:
+    0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.12),
     0px 1px 3px rgba(0, 0, 0, 0.2);
 
   @include mat.button-overrides(
@@ -88,11 +90,15 @@ table.mat-mdc-table {
       container-background-color: transparent,
       container-text-weight: 500,
       container-text-size: var(--mat-sys-body-medium-size),
-      container-size: auto
+      container-size: auto,
     )
   );
 
   .mat-mdc-paginator-container {
     padding: 0;
+  }
+
+  .mat-mdc-paginator-range-label {
+    margin: 0 v.$spacing * 2;
   }
 }
