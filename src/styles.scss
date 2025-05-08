@@ -88,7 +88,7 @@ table.mat-mdc-table {
   @include mat.paginator-overrides(
     (
       container-text-color: map.get(v.$neutral-palette, 50),
-      container-background-color: transparent,
+      container-background-color: white,
       container-text-weight: 500,
       container-text-size: var(--mat-sys-body-medium-size),
       container-size: auto,
